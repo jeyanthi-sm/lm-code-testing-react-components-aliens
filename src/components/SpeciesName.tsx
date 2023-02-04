@@ -10,7 +10,7 @@ export interface SpeciesNameProps {
 function SpeciesName(inputSpeciesName: SpeciesNameProps) {
   return (
     <>
-      <label htmlFor="speciesName"> Species Name </label>
+      <label htmlFor="speciesName">Species Name </label>
       <input
         id="speciesName"
         type="text"
