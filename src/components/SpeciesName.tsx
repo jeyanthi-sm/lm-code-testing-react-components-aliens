@@ -1,6 +1,4 @@
-import React, { EventHandler } from "react";
-import { text } from "stream/consumers";
-import { useState } from "react";
+import React, { useState } from "react";
 
 export interface SpeciesNameProps {
   speciesName?: string;
