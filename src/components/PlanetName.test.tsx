@@ -1,16 +1,28 @@
-import { fireEvent, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { screen } from "@testing-library/react";
-import PlanetName from "../components/PlanetName";
+import PlanetName, { PlanetNameProps } from "../components/PlanetName";
+import userEvent from "@testing-library/user-event";
+const mockFunction = jest.fn(() => "4");
+const mockPlanetName: PlanetNameProps = {
+  placeholder: "PlanetName",
+  onChangeHandler: mockFunction,
+  value: "Earth",
+};
+function beforeEachTest() {
+  render(<PlanetName {...mockPlanetName} />);
+}
 
-test("captures1 changes", (done) => {
-  function handleChange(evt: { target: { value: any } }) {
-    expect(evt.target.value).toEqual("New Value");
-    console.log("Yes equal");
-    done();
-  }
-  const { getByPlaceholderText } = render(
-    <PlanetName onChange={handleChange} placeholder="Old Value" />
-  );
-  const node = screen.getByPlaceholderText("Old Value");
-  fireEvent.change(node, { target: { value: "New Value" } });
+test("captures1 changes", async () => {
+  beforeEachTest();
+  mockFunction();
+
+  const node = screen.getByDisplayValue("Earth");
+  const planetNewName = "Mars";
+  const user = userEvent.setup();
+
+  await user.type(node, planetNewName);
+
+  expect(mockFunction).toHaveBeenCalledTimes(5);
+
+  //  userEvent.change(node, { target: { value: "New Value" } });
 });
