@@ -1,21 +1,40 @@
-/* eslint-disable testing-library/no-node-access */
 import { render, screen } from "@testing-library/react";
-import SpeciesName from "./SpeciesName";
+import SpeciesName, { SpeciesNameProps } from "./SpeciesName";
 
+import userEvent from "@testing-library/user-event";
+
+const mockFunction = jest.fn(() => "9");
+
+const mockSpeciesName: SpeciesNameProps = {
+  id: "SpeciesNameId",
+  type: "SpeciesName",
+  value: "human",
+  placeholder: "Species Name",
+  onChangeHandler: mockFunction,
+};
+
+function beforeEachTest() {
+  render(<SpeciesName {...mockSpeciesName} />);
+}
 test("Existence of Species Name on the Screen", () => {
-  const speciesName = "human";
-  const speciesNameLabelText = "Species Name";
-
-  render(<SpeciesName speciesName={speciesName} />);
-
-  expect(screen.getByLabelText(speciesNameLabelText)).toBeInTheDocument();
+  beforeEachTest();
+  expect(screen.getByLabelText("Species Name")).toBeInTheDocument();
+  expect(screen.getByDisplayValue(mockSpeciesName.value)).toBeInTheDocument();
 });
 
 test("Passed Value of Species Name Displayed Correctly", () => {
-  const speciesName = "human";
-  const speciesNameText = "human";
+  beforeEachTest();
+  expect(screen.getByDisplayValue(mockSpeciesName.value)).toBeInTheDocument();
+});
 
-  render(<SpeciesName speciesName={speciesName} />);
+test("captures renew changes", async () => {
+  beforeEachTest();
+  const speciesNewName = "New Value";
+  const user = userEvent.setup();
 
-  expect(screen.getByDisplayValue(speciesNameText)).toBeInTheDocument();
+  const node = screen.getByRole("textbox");
+
+  await user.type(node, speciesNewName);
+
+  expect(mockFunction).toHaveBeenCalledTimes(9);
 });

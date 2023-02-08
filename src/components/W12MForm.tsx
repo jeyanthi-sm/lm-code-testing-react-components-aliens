@@ -1,11 +1,9 @@
 import { useState } from "react";
-import SpeciesName from "./SpeciesName";
+import SpeciesName, { SpeciesNameProps } from "./SpeciesName";
 import W12MHeader from "./W12MHeader";
 
 const W12MForm = () => {
-  /*const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    event.target.value = "Demon";
-  };*/
+  const [speciesName, setSpeciesName] = useState("");
 
   const [textAreaValue, setTextAreaValue] = useState<string>("");
   const [selectValue, setSelectValue] = useState<string>("optionA");
@@ -14,9 +12,17 @@ const W12MForm = () => {
     <section className="w12MForm">
       <W12MHeader />
       {/* REST OF FORM GOES HERE */}
-
-      <SpeciesName />
-
+      render(
+      <SpeciesName
+        id="SpeciesNameId"
+        type="SpeciesName"
+        value={speciesName}
+        placeholder="Species Name"
+        onChangeHandler={(newvalue) => {
+          setSpeciesName(newvalue);
+        }}
+      />
+      );
       <label htmlFor="ReasonForSparing"> Reason For Sparing </label>
       <textarea //Reason for sparing
         id="ReasonForSparing"
