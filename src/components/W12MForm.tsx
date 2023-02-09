@@ -1,11 +1,13 @@
 import { useState } from "react";
-import SpeciesName, { SpeciesNameProps } from "./SpeciesName";
-import PlanetName, { PlanetNameProps } from "./PlanetName";
+import SpeciesName from "./SpeciesName";
+import PlanetName from "./PlanetName";
+import NumberOfBeings from "./NumberOfBeings";
 import W12MHeader from "./W12MHeader";
 
 const W12MForm = () => {
   const [speciesName, setSpeciesName] = useState("");
   const [planetName, setPlanetName] = useState("");
+  const [numberOfBeings, setNumberOfBeings] = useState<number>(0);
   const [textAreaValue, setTextAreaValue] = useState<string>("");
   const [selectValue, setSelectValue] = useState<string>("optionA");
 
@@ -13,24 +15,27 @@ const W12MForm = () => {
     <section className="w12MForm">
       <W12MHeader />
       {/* REST OF FORM GOES HERE */}
-      <div className="mainForm">
+      <form className="mainForm">
         <SpeciesName
           id="SpeciesNameId"
           type="SpeciesName"
           value={speciesName}
           placeholder="Species Name"
-          onChangeHandler={(newvalue) => {
-            setSpeciesName(newvalue);
-          }}
+          onChangeHandler={setSpeciesName}
         />
 
         <PlanetName
           value={planetName}
           placeholder="Planet Name"
-          onChangeHandler={(newvalue) => {
-            setPlanetName(newvalue);
-          }}
+          onChangeHandler={setPlanetName}
         />
+
+        <NumberOfBeings
+          value={numberOfBeings}
+          placeholder="Number of Beings"
+          onChangeHandler={setNumberOfBeings}
+        />
+
         <label htmlFor="ReasonForSparing"> Reason For Sparing </label>
         <textarea //Reason for sparing
           id="ReasonForSparing"
@@ -50,7 +55,7 @@ const W12MForm = () => {
           <option value="4">4</option>
           <option value="Not 4">Not 4</option>
         </select>
-      </div>
+      </form>
     </section>
   );
 };
