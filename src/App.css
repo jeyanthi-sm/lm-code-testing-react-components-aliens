@@ -12,6 +12,5 @@ body {
 }
 .mainForm {
 	display: flex;
-	flex-direction: column;
-	
+	flex-direction: column;	
 }

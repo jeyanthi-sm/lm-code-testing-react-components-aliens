@@ -15,6 +15,16 @@ function beforeEachTest() {
   render(<PlanetName {...mockPlanetName} />);
 }
 
+test("Existence of Planet Name in the screeen", () => {
+  beforeEachTest();
+  expect(screen.getByLabelText("Planet Name")).toBeInTheDocument();
+});
+
+test("Planet Name Passed Value Displayed correctly in the screeen", () => {
+  beforeEachTest();
+  expect(screen.getByDisplayValue(mockPlanetName.value)).toBeInTheDocument();
+});
+
 test("PlanetName capture the changes", async () => {
   beforeEachTest();
   mockFunction();

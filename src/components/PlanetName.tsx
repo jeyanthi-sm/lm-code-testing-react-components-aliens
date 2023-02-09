@@ -13,8 +13,9 @@ export default function PlanetName(props: PlanetNameProps) {
 
   return (
     <>
-      <label htmlFor="PlanetNameid"> Planet Name </label>
+      <label htmlFor="PlanetNameId"> Planet Name </label>
       <input
+        id="PlanetNameId"
         value={value}
         placeholder="Planet Name"
         onChange={(e) => {
