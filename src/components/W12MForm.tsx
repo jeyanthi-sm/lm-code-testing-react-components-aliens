@@ -2,13 +2,14 @@ import { useState } from "react";
 import SpeciesName from "./SpeciesName";
 import PlanetName from "./PlanetName";
 import NumberOfBeings from "./NumberOfBeings";
+import ReasonForSparing from "./ReasonForSparing";
 import W12MHeader from "./W12MHeader";
 
 const W12MForm = () => {
   const [speciesName, setSpeciesName] = useState("");
   const [planetName, setPlanetName] = useState("");
   const [numberOfBeings, setNumberOfBeings] = useState<number>(0);
-  const [textAreaValue, setTextAreaValue] = useState<string>("");
+  const [reasonForSparing, setReasonForSparing] = useState<string>("");
   const [selectValue, setSelectValue] = useState<string>("optionA");
 
   return (
@@ -36,14 +37,12 @@ const W12MForm = () => {
           onChangeHandler={setNumberOfBeings}
         />
 
-        <label htmlFor="ReasonForSparing"> Reason For Sparing </label>
-        <textarea //Reason for sparing
-          id="ReasonForSparing"
-          value={textAreaValue}
-          onChange={(ev: React.ChangeEvent<HTMLTextAreaElement>): void =>
-            setTextAreaValue(ev.target.value)
-          }
+        <ReasonForSparing
+          value={reasonForSparing}
+          placeholder="Reason for Sparing"
+          onChangeHandler={setReasonForSparing}
         />
+
         <label htmlFor="Whatis2+2"> What is 2 + 2 </label>
         <select
           id="Whatis2+2"

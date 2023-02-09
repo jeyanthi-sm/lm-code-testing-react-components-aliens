@@ -1,5 +1,4 @@
-import { render } from "@testing-library/react";
-import { screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import PlanetName, { PlanetNameProps } from "../components/PlanetName";
 import userEvent from "@testing-library/user-event";
 const mockFunction = jest.fn(() => {
