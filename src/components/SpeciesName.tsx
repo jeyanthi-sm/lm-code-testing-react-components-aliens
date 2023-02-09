@@ -11,7 +11,7 @@ export interface SpeciesNameProps {
 function SpeciesName(props: SpeciesNameProps) {
   //destructuring an object
   const { id, type, placeholder, value } = props;
-  const [speciesNamestate, setSpeciesNameState] = useState("TestSTate");
+  const [speciesNamestate, setSpeciesNameState] = useState("Test Species");
 
   return (
     <>

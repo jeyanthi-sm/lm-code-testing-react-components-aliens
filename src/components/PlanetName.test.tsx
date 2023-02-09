@@ -2,7 +2,10 @@ import { render } from "@testing-library/react";
 import { screen } from "@testing-library/react";
 import PlanetName, { PlanetNameProps } from "../components/PlanetName";
 import userEvent from "@testing-library/user-event";
-const mockFunction = jest.fn(() => "4");
+const mockFunction = jest.fn(() => {
+  console.log("mock function called ");
+  return "4";
+});
 const mockPlanetName: PlanetNameProps = {
   placeholder: "PlanetName",
   onChangeHandler: mockFunction,
@@ -12,7 +15,7 @@ function beforeEachTest() {
   render(<PlanetName {...mockPlanetName} />);
 }
 
-test("captures1 changes", async () => {
+test("PlanetName capture the changes", async () => {
   beforeEachTest();
   mockFunction();
 
@@ -23,6 +26,4 @@ test("captures1 changes", async () => {
   await user.type(node, planetNewName);
 
   expect(mockFunction).toHaveBeenCalledTimes(5);
-
-  //  userEvent.change(node, { target: { value: "New Value" } });
 });

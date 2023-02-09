@@ -13,43 +13,44 @@ const W12MForm = () => {
     <section className="w12MForm">
       <W12MHeader />
       {/* REST OF FORM GOES HERE */}
+      <div className="mainForm">
+        <SpeciesName
+          id="SpeciesNameId"
+          type="SpeciesName"
+          value={speciesName}
+          placeholder="Species Name"
+          onChangeHandler={(newvalue) => {
+            setSpeciesName(newvalue);
+          }}
+        />
 
-      <SpeciesName
-        id="SpeciesNameId"
-        type="SpeciesName"
-        value={speciesName}
-        placeholder="Species Name"
-        onChangeHandler={(newvalue) => {
-          setSpeciesName(newvalue);
-        }}
-      />
-
-      <PlanetName
-        value={planetName}
-        placeholder="Planet Name"
-        onChangeHandler={(newvalue) => {
-          setPlanetName(newvalue);
-        }}
-      />
-      <label htmlFor="ReasonForSparing"> Reason For Sparing </label>
-      <textarea //Reason for sparing
-        id="ReasonForSparing"
-        value={textAreaValue}
-        onChange={(ev: React.ChangeEvent<HTMLTextAreaElement>): void =>
-          setTextAreaValue(ev.target.value)
-        }
-      />
-      <label htmlFor="Whatis2+2"> What is 2 + 2 </label>
-      <select
-        id="Whatis2+2"
-        value={selectValue}
-        onBlur={(ev: React.ChangeEvent<HTMLSelectElement>): void =>
-          setSelectValue(ev.target.value)
-        }
-      >
-        <option value="4">4</option>
-        <option value="Not 4">Not 4</option>
-      </select>
+        <PlanetName
+          value={planetName}
+          placeholder="Planet Name"
+          onChangeHandler={(newvalue) => {
+            setPlanetName(newvalue);
+          }}
+        />
+        <label htmlFor="ReasonForSparing"> Reason For Sparing </label>
+        <textarea //Reason for sparing
+          id="ReasonForSparing"
+          value={textAreaValue}
+          onChange={(ev: React.ChangeEvent<HTMLTextAreaElement>): void =>
+            setTextAreaValue(ev.target.value)
+          }
+        />
+        <label htmlFor="Whatis2+2"> What is 2 + 2 </label>
+        <select
+          id="Whatis2+2"
+          value={selectValue}
+          onBlur={(ev: React.ChangeEvent<HTMLSelectElement>): void =>
+            setSelectValue(ev.target.value)
+          }
+        >
+          <option value="4">4</option>
+          <option value="Not 4">Not 4</option>
+        </select>
+      </div>
     </section>
   );
 };

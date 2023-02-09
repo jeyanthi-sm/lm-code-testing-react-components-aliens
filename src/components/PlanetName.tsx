@@ -1,4 +1,5 @@
-import React from "react";
+import { getByPlaceholderText } from "@testing-library/react";
+import React, { useState } from "react";
 
 export interface PlanetNameProps {
   onChangeHandler: (value: string) => void;
@@ -7,12 +8,17 @@ export interface PlanetNameProps {
 }
 
 export default function PlanetName(props: PlanetNameProps) {
+  const [planetName, setPlanetName] = useState("Test Planet");
+  const { value, placeholder, onChangeHandler } = props;
+
   return (
     <>
+      <label htmlFor="PlanetNameid"> Planet Name </label>
       <input
-        {...props}
+        value={value}
+        placeholder="Planet Name"
         onChange={(e) => {
-          props.onChangeHandler(e.target.value); //  onChange={(event) => console.log(event)}
+          props.onChangeHandler(e.target.value);
         }}
       />
     </>
