@@ -10,7 +10,15 @@ body {
 	justify-content: center;
 	margin: 0;
 }
-.mainForm {
+.w12MForm {
 	display: flex;
+	flex-wrap: wrap;
 	flex-direction: column;	
+}
+.w12MForm button {
+	display:inline-flex;
+	margin: auto;
+	padding:1%;
+	border:1%;
+	justify-content: center;
 }
