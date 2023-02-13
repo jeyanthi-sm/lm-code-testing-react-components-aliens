@@ -29,7 +29,7 @@ describe("What Is Value displayed correctly", () => {
 describe("Change to What Is", () => {
   test("captures Changes", async () => {
     beforeEachTest();
-    const whatIsNewValue = "4";
+    const whatIsNewValue = "Not 4";
     const user = userEvent.setup();
 
     const node = screen.getByRole("combobox");
