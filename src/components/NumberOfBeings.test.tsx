@@ -37,3 +37,19 @@ test("Capture Changes Correctly", async () => {
 
   expect(mockFunction).toHaveBeenCalledTimes(4);
 });
+
+const MOCKMINNUMBEROFSPECIES = "99999999";
+
+const onChangeValidation = async (inputNumberOfBeingsValue: string) => {
+  beforeEachTest();
+  const user = userEvent.setup();
+  const node = screen.getByDisplayValue(1);
+  await user.type(node, inputNumberOfBeingsValue);
+  expect(screen.queryByText("ERROR")).not.toBeInTheDocument();
+};
+
+describe("Min Value Checking Error", () => {
+  test("Min Value Checking Error", async () => {
+    onChangeValidation(MOCKMINNUMBEROFSPECIES);
+  });
+});
