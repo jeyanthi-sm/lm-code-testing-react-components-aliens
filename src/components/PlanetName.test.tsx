@@ -10,22 +10,23 @@ const mockPlanetName: PlanetNameProps = {
   onChangeHandler: mockFunction,
   value: "Earth",
 };
-function beforeEachTest() {
-  render(<PlanetName {...mockPlanetName} />);
+
+function beforeEachTest(inputPlanetName: PlanetNameProps) {
+  render(<PlanetName {...inputPlanetName} />);
 }
 
 test("Existence of Planet Name in the screeen", () => {
-  beforeEachTest();
+  beforeEachTest(mockPlanetName);
   expect(screen.getByLabelText("Planet Name")).toBeInTheDocument();
 });
 
 test("Planet Name Passed Value Displayed correctly in the screeen", () => {
-  beforeEachTest();
+  beforeEachTest(mockPlanetName);
   expect(screen.getByDisplayValue(mockPlanetName.value)).toBeInTheDocument();
 });
 
 test("PlanetName capture the changes", async () => {
-  beforeEachTest();
+  beforeEachTest(mockPlanetName);
   mockFunction();
 
   const node = screen.getByDisplayValue("Earth");
@@ -37,6 +38,12 @@ test("PlanetName capture the changes", async () => {
   expect(mockFunction).toHaveBeenCalledTimes(5);
 });
 
+const mockPlanetNameValid: PlanetNameProps = {
+  placeholder: "PlanetName",
+  onChangeHandler: mockFunction,
+  value: "E",
+};
+
 const MOCKMINLENGTHERRORPLANETNAME = "N";
 const MOCKNUMBERINPLANETNAME = "1234";
 const MOCKMAXLENGTHPLANETNAME =
@@ -44,7 +51,7 @@ const MOCKMAXLENGTHPLANETNAME =
 const MOCKSPECIALINPLANETNAME = "^^^^^^^^^^";
 
 const onChangeValidation = async (inputPlanetNameValue: string) => {
-  beforeEachTest();
+  beforeEachTest(mockPlanetNameValid);
   const user = userEvent.setup();
   const node = screen.getByRole("textbox");
   await user.type(node, inputPlanetNameValue);

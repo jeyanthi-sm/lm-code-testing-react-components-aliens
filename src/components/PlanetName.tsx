@@ -12,7 +12,6 @@ export default function PlanetName(props: PlanetNameProps) {
   const [planetName, setPlanetName] = useState("Test Planet");
   const { value, placeholder, onChangeHandler } = props;
   const [errorMessage, setErrorMessage] = useState<string | undefined>();
-  // some validation function here
   const validatePlanetName: (value: string) => string | undefined = (value) => {
     const planetNameRegexp = RegExp(/^[a-z0-9]{2,49}$/, "i"); //find any character not between a-z and 0-9
     const matchPattern = planetNameRegexp.test(value);
