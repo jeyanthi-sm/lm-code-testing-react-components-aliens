@@ -14,10 +14,10 @@ function SpeciesName(props: SpeciesNameProps) {
   const [speciesNamestate, setSpeciesNameState] = useState("Test Species");
   const [errorMessage, setErrorMessage] = useState<string | undefined>();
   // some validation function here
-  const validate: (value: string) => string | undefined = (value) => {
-    // do stuff
+  const validateSpeciesName: (value: string) => string | undefined = (
+    value
+  ) => {
     const speciesNameRegexp = RegExp(/^[a-z]{3,23}$/, "i"); //find any character not between a-z
-    //const matchPattern = speciesNameRegexp.test(value);
     const matchPattern = speciesNameRegexp.test(value);
     if (!matchPattern)
       return "ERROR! Length  Must be between 3 and 23 characters Numbers and Special Characters Not allowed";
@@ -33,7 +33,7 @@ function SpeciesName(props: SpeciesNameProps) {
         placeholder={placeholder}
         value={value}
         onChange={(e) => {
-          const errorMessage = validate(e.target.value);
+          const errorMessage = validateSpeciesName(e.target.value);
           setErrorMessage(errorMessage);
           props.onChangeHandler(e.target.value);
         }}

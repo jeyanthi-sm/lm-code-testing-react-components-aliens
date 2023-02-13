@@ -12,36 +12,12 @@ const mockSpeciesName: SpeciesNameProps = {
   placeholder: "Species Name",
   onChangeHandler: mockFunction,
 };
-const mockMinLengthErrorSpeciesName: SpeciesNameProps = {
-  id: "SpeciesNameId",
-  type: "SpeciesName",
-  value: "N",
-  placeholder: "Species Name",
-  onChangeHandler: mockFunction,
-};
-const mockNumberInSpeciesName: SpeciesNameProps = {
-  id: "SpeciesNameId",
-  type: "SpeciesName",
-  value: "1234",
-  placeholder: "Species Name",
-  onChangeHandler: mockFunction,
-};
+const MOCKMINLENGTHERRORSPECIESNAME = "N";
+const MOCKNUMBERINSPECIESNAME = "1234";
+const MOCKMAXLENGTHSPECIESNAME =
+  "iroejgioejgioregioergioerjgioregioregoejrgiorejgiorejgioegjierogejogio";
+const MOCKSPECIALINSPECIESNAME = "$$$$$$";
 
-const mockMaxLengthSpeciesName: SpeciesNameProps = {
-  id: "SpeciesNameId",
-  type: "SpeciesName",
-  value:
-    "iroejgioejgioregioergioerjgioregioregoejrgiorejgiorejgioegjierogejogio",
-  placeholder: "Species Name",
-  onChangeHandler: mockFunction,
-};
-const mockSpecialInSpeciesName: SpeciesNameProps = {
-  id: "SpeciesNameId",
-  type: "SpeciesName",
-  value: "$$$$$$$",
-  placeholder: "Species Name",
-  onChangeHandler: mockFunction,
-};
 function beforeEachTest() {
   render(<SpeciesName {...mockSpeciesName} />);
 }
@@ -73,34 +49,34 @@ describe("captures renew changes", () => {
   });
 });
 
-const onChangeValidation = async (inputSpeciesName: SpeciesNameProps) => {
+const onChangeValidation = async (inputSpeciesNameValue: string) => {
   beforeEachTest();
   const user = userEvent.setup();
   const node = screen.getByRole("textbox");
-  await user.type(node, inputSpeciesName.value);
+  await user.type(node, inputSpeciesNameValue);
   expect(screen.queryByText("ERROR")).not.toBeInTheDocument();
 };
 
 describe("Min Length Checking Error", () => {
   test("Min Length Checking Error", async () => {
-    onChangeValidation(mockMinLengthErrorSpeciesName);
+    onChangeValidation(MOCKMINLENGTHERRORSPECIESNAME);
   });
 });
 
 describe("Max Length Checking Error", () => {
   test("Max Length Checking Error", async () => {
-    onChangeValidation(mockMaxLengthSpeciesName);
+    onChangeValidation(MOCKMAXLENGTHSPECIESNAME);
   });
 });
 
 describe("Test for Number", () => {
   test("Testfor Number", async () => {
-    onChangeValidation(mockNumberInSpeciesName);
+    onChangeValidation(MOCKNUMBERINSPECIESNAME);
   });
 });
 
 describe("Test for Special Characters", () => {
   test("Testfor Special Characters 1", async () => {
-    onChangeValidation(mockSpecialInSpeciesName);
+    onChangeValidation(MOCKSPECIALINSPECIESNAME);
   });
 });
