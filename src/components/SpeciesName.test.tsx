@@ -12,10 +12,10 @@ const mockSpeciesName: SpeciesNameProps = {
   placeholder: "Species Name",
   onChangeHandler: mockFunction,
 };
-const mockLengthErrorSpeciesName: SpeciesNameProps = {
+const mockMinLengthErrorSpeciesName: SpeciesNameProps = {
   id: "SpeciesNameId",
   type: "SpeciesName",
-  value: "Ne",
+  value: "N",
   placeholder: "Species Name",
   onChangeHandler: mockFunction,
 };
@@ -38,8 +38,7 @@ const mockMaxLengthSpeciesName: SpeciesNameProps = {
 const mockSpecialInSpeciesName: SpeciesNameProps = {
   id: "SpeciesNameId",
   type: "SpeciesName",
-  value:
-    "iroejgioejgioregioergioerjgioregioregoejrgiorejgiorejgioegjierogejogio",
+  value: "$$$$$$$",
   placeholder: "Species Name",
   onChangeHandler: mockFunction,
 };
@@ -61,6 +60,7 @@ describe("Passed Value of Species Name Displayed Correctly", () => {
 });
 describe("captures renew changes", () => {
   test("captures renew changes", async () => {
+    //onChangeValidation("New Value");
     beforeEachTest();
     const speciesNewName = "New Value";
     const user = userEvent.setup();
@@ -73,30 +73,34 @@ describe("captures renew changes", () => {
   });
 });
 
+const onChangeValidation = async (inputSpeciesName: SpeciesNameProps) => {
+  beforeEachTest();
+  const user = userEvent.setup();
+  const node = screen.getByRole("textbox");
+  await user.type(node, inputSpeciesName.value);
+  expect(screen.queryByText("ERROR")).not.toBeInTheDocument();
+};
+
 describe("Min Length Checking Error", () => {
   test("Min Length Checking Error", async () => {
-    render(<SpeciesName {...mockLengthErrorSpeciesName} />);
-    expect(screen.queryByText("ERROR")).not.toBeInTheDocument();
+    onChangeValidation(mockMinLengthErrorSpeciesName);
   });
 });
 
 describe("Max Length Checking Error", () => {
   test("Max Length Checking Error", async () => {
-    render(<SpeciesName {...mockMaxLengthSpeciesName} />);
-    expect(screen.queryByText("ERROR")).not.toBeInTheDocument();
+    onChangeValidation(mockMaxLengthSpeciesName);
   });
 });
 
 describe("Test for Number", () => {
   test("Testfor Number", async () => {
-    render(<SpeciesName {...mockNumberInSpeciesName} />);
-    expect(screen.queryByText("ERROR")).not.toBeInTheDocument();
+    onChangeValidation(mockNumberInSpeciesName);
   });
 });
 
 describe("Test for Special Characters", () => {
   test("Testfor Special Characters 1", async () => {
-    render(<SpeciesName {...mockSpecialInSpeciesName} />);
-    expect(screen.queryByText("ERROR")).not.toBeInTheDocument();
+    onChangeValidation(mockSpecialInSpeciesName);
   });
 });
