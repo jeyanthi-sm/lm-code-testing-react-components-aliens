@@ -9,10 +9,10 @@ import SubmitButton from "./SubmitButton";
 const W12MForm = () => {
   const [speciesName, setSpeciesName] = useState("");
   const [planetName, setPlanetName] = useState("");
-  const [numberOfBeings, setNumberOfBeings] = useState<number>(0);
+  const [numberOfBeings, setNumberOfBeings] = useState<string>("0");
   const [reasonForSparing, setReasonForSparing] = useState<string>("");
-  //  const [selectValue, setSelectValue] = useState<string>("optionA");
-  const [whatIsState, setWhatIsState] = useState<string>("OptionaA");
+  const [whatIsState, setWhatIsState] = useState<string>("Option A");
+
   function submitButtonClick() {
     console.log("Submitted form");
   }
@@ -34,7 +34,7 @@ const W12MForm = () => {
         onChangeHandler={setPlanetName}
       />
       <NumberOfBeings
-        value={numberOfBeings}
+        value={parseInt(numberOfBeings)}
         placeholder="Number of Beings"
         onChangeHandler={setNumberOfBeings}
       />
