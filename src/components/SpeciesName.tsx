@@ -36,7 +36,7 @@ function SpeciesName(props: SpeciesNameProps) {
           props.onChangeHandler(e.target.value);
         }}
       />
-      <ErrorMessage message={errorMessage} />
+      <ErrorMessage isValid={true} message={errorMessage} />
     </>
   );
 }
