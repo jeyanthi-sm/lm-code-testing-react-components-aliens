@@ -15,6 +15,5 @@ const ErrorMessage: React.FC<ErrorMessageProps> = (
       <div> {message} </div>
     </>
   );
-  //return <div> {!isValid && <em> {message} </em>} </div>;
 };
 export default ErrorMessage;
