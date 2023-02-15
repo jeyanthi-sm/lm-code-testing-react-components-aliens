@@ -24,8 +24,7 @@ body {
 }
 .formInputs {
 	display:flex;
-	flex-wrap: wrap;
-	
+	flex-wrap: wrap;	
 	width: 100%;
 	padding: 1%;
 	margin: auto;
@@ -34,21 +33,9 @@ body {
 }
 .formInputs label {
 	display: inline-flex;
-	width: 20%;
-	justify-content: start;
+	width: 45%;
+	justify-content: center;
 }
-.formInputs div {
-	display: flex;
-	width: 100%;
-	justify-content: start;
-}
-
 .errorDiv {
 	color: red;	
-}
-.formInputs input {
-	display: flex;
-	width: 80%;
-	height: auto;
-	justify-content: flex-start;
 }
