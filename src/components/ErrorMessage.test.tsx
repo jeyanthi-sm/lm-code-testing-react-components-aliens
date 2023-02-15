@@ -10,7 +10,7 @@ describe("Testing Basic ErrorMessage Component", () => {
 
 describe("Passing Empty String To Basic ErrorMessage Component", () => {
   test("Testing Basic ErrorMessage Component", () => {
-    const messageToReturn = undefined;
+    const messageToReturn = "OK";
     render(<ErrorMessage message={messageToReturn} />);
     expect(screen.queryByText("ERROR!")).toBeNull();
   });

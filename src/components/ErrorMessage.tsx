@@ -9,11 +9,6 @@ const ErrorMessage: React.FC<ErrorMessageProps> = (
   inputProps: ErrorMessageProps
 ) => {
   const { message } = inputProps;
-  return (
-    <>
-      {!message}
-      <div> {message} </div>
-    </>
-  );
+  return <>{message !== "OK" && <div className="errorDiv"> {message}</div>}</>;
 };
 export default ErrorMessage;
