@@ -6,7 +6,6 @@ interface SubmitButtonProps {
 const SubmitButton: React.FC<SubmitButtonProps> = ({ onClickHandler }) => (
   <>
     <button type="button" onClick={onClickHandler}>
-      {" "}
       Submit Form{" "}
     </button>
   </>
