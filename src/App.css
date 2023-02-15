@@ -12,8 +12,8 @@ body {
 }
 .w12MForm {
 	display: flex;
-	flex-wrap: wrap;
-	flex-direction: column;	
+	flex-wrap: wrap;	
+	flex-direction: column;
 }
 .w12MForm button {
 	display:inline-flex;
@@ -21,4 +21,34 @@ body {
 	padding:1%;
 	border:1%;
 	justify-content: center;
+}
+.formInputs {
+	display:flex;
+	flex-wrap: wrap;
+	
+	width: 100%;
+	padding: 1%;
+	margin: auto;
+	height:auto;
+	justify-content: start;
+}
+.formInputs label {
+	display: inline-flex;
+	width: 20%;
+	justify-content: start;
+}
+.formInputs div {
+	display: flex;
+	width: 100%;
+	justify-content: start;
+}
+
+.errorDiv {
+	color: red;	
+}
+.formInputs input {
+	display: flex;
+	width: 80%;
+	height: auto;
+	justify-content: flex-start;
 }

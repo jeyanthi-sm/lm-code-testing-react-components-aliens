@@ -1,54 +1,124 @@
 import { useState } from "react";
-import SpeciesName from "./SpeciesName";
-import PlanetName from "./PlanetName";
-import NumberOfBeings from "./NumberOfBeings";
-import ReasonForSparing from "./ReasonForSparing";
 import W12MHeader from "./W12MHeader";
-import WhatIs from "./WhatIs";
 import SubmitButton from "./SubmitButton";
+import CustomInput from "./CustomInput";
+import validateSpeciesName from "./utils/validate-speciesName";
+import validatePlanetName from "./utils/validate-planetName";
+import validateNumberOfBeings from "./utils/validate-numberOfBeings";
+import validateWhatIs from "./utils/validate-whatIs";
+import validateReasonForSparing from "./utils/validate-reasonForSparing";
+
 const W12MForm = () => {
-  const [speciesName, setSpeciesName] = useState("");
-  const [planetName, setPlanetName] = useState("");
-  const [numberOfBeings, setNumberOfBeings] = useState<string>("0");
-  const [reasonForSparing, setReasonForSparing] = useState<string>("");
-  const [whatIsState, setWhatIsState] = useState<string>("Option A");
+  type formData = {
+    speciesName: string;
+    planetName: string;
+    numberOfBeings: string;
+    reasonForSparing: string;
+    whatIs: string;
+  };
+
+  const [formInput, setFormInput] = useState<formData>({
+    speciesName: "humans",
+    planetName: "Earth",
+    numberOfBeings: "1",
+    reasonForSparing: "reasonForSparing",
+    whatIs: "4",
+  });
 
   function submitButtonClick() {
-    console.log("Submitted form");
+    if (
+      typeof validateSpeciesName === "string" &&
+      validateSpeciesName === "OK" &&
+      typeof validatePlanetName === "string" &&
+      validatePlanetName === "OK" &&
+      typeof validateNumberOfBeings === "string" &&
+      validateNumberOfBeings === "OK" &&
+      typeof validateWhatIs === "string" &&
+      validateWhatIs === "OK" &&
+      typeof validateReasonForSparing === "string" &&
+      validateReasonForSparing
+    )
+      console.log("Submitted form successfully");
+    else {
+      console.log("Form not submitted Please fix the errors");
+      const newFormInput = { ...formInput };
+      setFormInput(newFormInput);
+    }
   }
 
   return (
     <section className="w12MForm">
       <W12MHeader />
       {/* REST OF FORM GOES HERE */}
-      <SpeciesName
+
+      <CustomInput
         id="SpeciesNameId"
-        type="SpeciesName"
-        value={speciesName}
+        name="SpeciesName"
+        type="text"
+        label="Species Name "
+        value={formInput.speciesName}
         placeholder="Species Name"
-        onChangeHandler={setSpeciesName}
+        onChangeHandler={(e) => {
+          const newFormInput = { ...formInput };
+          newFormInput.speciesName = e;
+          setFormInput(newFormInput);
+        }}
       />
-      <PlanetName
-        value={planetName}
+
+      <CustomInput
+        id="PlanetNameId"
+        name="PlanetName"
+        type="text"
+        label="Planet Name "
+        value={formInput.planetName}
         placeholder="Planet Name"
-        onChangeHandler={setPlanetName}
+        onChangeHandler={(e) => {
+          const newFormInput = { ...formInput };
+          newFormInput.planetName = e;
+          setFormInput(newFormInput);
+        }}
       />
-      <NumberOfBeings
-        value={parseInt(numberOfBeings)}
+
+      <CustomInput
+        id="NumberOfBeingsId"
+        name="NumberOfBeings"
+        type="text"
+        label="Number of Beings "
+        value={formInput.numberOfBeings}
         placeholder="Number of Beings"
-        onChangeHandler={setNumberOfBeings}
+        onChangeHandler={(e) => {
+          const newFormInput = { ...formInput };
+          newFormInput.numberOfBeings = e;
+          setFormInput(newFormInput);
+        }}
       />
-      <ReasonForSparing
-        value={reasonForSparing}
-        placeholder="Reason for Sparing"
-        onChangeHandler={setReasonForSparing}
-      />
-      <WhatIs
+      <CustomInput
         id="WhatIsId"
-        value={whatIsState}
-        placeholder="What is"
-        onChangeHandler={setWhatIsState}
+        name="WhatIs"
+        type="select"
+        label="What is 2 + 2 "
+        value={formInput.whatIs}
+        placeholder="What is 2 + 2 "
+        onChangeHandler={(e) => {
+          const newFormInput = { ...formInput };
+          newFormInput.whatIs = e;
+          setFormInput(newFormInput);
+        }}
       />
+      <CustomInput
+        id="ReasonForSparingId"
+        name="ReasonForSparing"
+        type="textarea"
+        label="Reason For Sparing "
+        value={formInput.reasonForSparing}
+        placeholder="Reason for Sparing "
+        onChangeHandler={(e) => {
+          const newFormInput = { ...formInput };
+          newFormInput.reasonForSparing = e;
+          setFormInput(newFormInput);
+        }}
+      />
+
       <SubmitButton onClickHandler={submitButtonClick} />
     </section>
   );
