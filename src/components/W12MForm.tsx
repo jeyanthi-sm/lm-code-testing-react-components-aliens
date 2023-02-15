@@ -26,24 +26,7 @@ const W12MForm = () => {
   });
 
   function submitButtonClick() {
-    if (
-      typeof validateSpeciesName === "string" &&
-      validateSpeciesName === "OK" &&
-      typeof validatePlanetName === "string" &&
-      validatePlanetName === "OK" &&
-      typeof validateNumberOfBeings === "string" &&
-      validateNumberOfBeings === "OK" &&
-      typeof validateWhatIs === "string" &&
-      validateWhatIs === "OK" &&
-      typeof validateReasonForSparing === "string" &&
-      validateReasonForSparing
-    )
-      console.log("Submitted form successfully");
-    else {
-      console.log("Form not submitted Please fix the errors");
-      const newFormInput = { ...formInput };
-      setFormInput(newFormInput);
-    }
+    console.log(formInput);
   }
 
   return (
